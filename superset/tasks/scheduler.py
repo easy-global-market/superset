@@ -70,7 +70,7 @@ def scheduler() -> None:
                 )
 
 
-@celery_app.task(name="reports.execute")
+@celery_app.task(name="reports.execute", bind=True)
 def execute(report_schedule_id: int, scheduled_dttm: str) -> None:
     task_id = None
     try:
@@ -90,10 +90,12 @@ def execute(report_schedule_id: int, scheduled_dttm: str) -> None:
         logger.exception(
             "An unexpected occurred while executing the report: %s", task_id
         )
+        execute.update_state(state="FAILURE")
     except CommandException:
         logger.exception(
             "A downstream exception occurred while generating" " a report: %s", task_id
         )
+        execute.update_state(state="FAILURE")
 
 
 @celery_app.task(name="reports.prune_log")
