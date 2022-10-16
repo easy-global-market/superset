@@ -18,6 +18,7 @@
  */
 import {
   createDurationFormatter,
+  createD3NumberFormatter,
   getNumberFormatter,
   getNumberFormatterRegistry,
   NumberFormats,
@@ -66,6 +67,18 @@ export default function setupFormatters() {
     .registerValue(
       'DURATION_SUB',
       createDurationFormatter({ formatSubMilliseconds: true }),
+    )
+    .registerValue(
+      'MILLIERS_ENTIER_FR',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: ' ',
+          grouping: [3],
+          currency: ['', '€'],
+        },
+        formatString: ',d',
+      }),
     );
 
   getTimeFormatterRegistry()
