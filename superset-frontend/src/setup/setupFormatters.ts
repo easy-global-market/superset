@@ -79,6 +79,18 @@ export default function setupFormatters() {
         },
         formatString: ',d',
       }),
+    )
+    .registerValue(
+      'DECIMAL_TWO_DIGITS_FR',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: ' ',
+          grouping: [3],
+          currency: ['', '€'],
+        },
+        formatString: ',.2f',
+      }),
     );
 
   getTimeFormatterRegistry()
