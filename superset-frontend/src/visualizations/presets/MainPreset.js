@@ -36,6 +36,7 @@ import TableChartPlugin from '@superset-ui/plugin-chart-table';
 import TreemapChartPlugin from '@superset-ui/legacy-plugin-chart-treemap';
 import { WordCloudChartPlugin } from '@superset-ui/plugin-chart-word-cloud';
 import WorldMapChartPlugin from '@superset-ui/legacy-plugin-chart-world-map';
+import IndicatorChartPlugin from 'superset-indicator-chart';
 import {
   AreaChartPlugin,
   BarChartPlugin,
@@ -138,6 +139,7 @@ export default class MainPreset extends Preset {
         new TreemapChartPlugin().configure({ key: 'treemap' }),
         new WordCloudChartPlugin().configure({ key: 'word_cloud' }),
         new WorldMapChartPlugin().configure({ key: 'world_map' }),
+        new IndicatorChartPlugin().configure({key: 'indicator'}),
         new EchartsAreaChartPlugin().configure({
           key: 'echarts_area',
         }),
